@@ -1,0 +1,421 @@
+<div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+  <h2 class="text-xl font-semibold leading-tight text-right text-gray-800">
+    الكشوفـــــــــــات
+  </h2>
+</div>
+
+<div class="p-12 bg-gray-700 h-full">
+  <div id="input-form" class="p-6 mx-auto bg-gray-100 rounded-lg ">
+    <form (ngSubmit)="passDataToB()" class="space-y-5">
+      <!-- القضاء - الناحية - رقم العقار - رقم المقاطعة -->
+      <div class="flex gap-4 text-right direction-rtl">
+        <div class="flex-1">
+          <label for="number" class="text-lg mr-1">القضاء:</label>
+          <input id="number" name="number" type="text" disabled
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.hit" value="{{formData.hit}}" />
+          <span class="text-sm text-red-400"></span>
+        </div>
+
+        <div class="flex-1">
+          <label for="history" class="text-lg mr-1">الناحية:</label>
+          <input id="history" name="history" type="text"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.sub_district" value="{{formData.sub_district}}" />
+          <span class="text-sm text-red-400"></span>
+        </div>
+
+        <div class="flex-1">
+          <label for="piece-number" class="text-lg mr-1">رقم العقار:</label>
+          <input id="piece-number" name="piece-number" type="text"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.piece_number" />
+          <span class="text-sm text-red-400"></span>
+        </div>
+
+        <div class="flex-1">
+          <label for="skin" class="text-lg mr-1">رقم المقاطعة:</label>
+          <input id="skin" name="skin" type="text"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.district_name" />
+          <span class="text-sm text-red-400"></span>
+        </div>
+      </div>
+      <!-- جنس الععقار - صنف العقار - متر - اولك - دونم - فرق المساحة-->
+      <div class="flex gap-4 text-right direction-rtl">
+        <div class="flex-1">
+          <label for="owner_name" class="text-lg mr-1">جنس العقار:</label>
+          <input id="owner_name" name="owner_name" type="text"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.sex" />
+          <span class="text-sm text-red-400"></span>
+        </div>
+        <div class="flex-2">
+          <label for="district_name" class="text-lg mr-1">صنف العقار:</label>
+          <input id="district_name" name="district_name" type="text"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.class" />
+          <span class="text-sm text-red-400"></span>
+        </div>
+        <div class="flex-initial w-28">
+          <label for="mater" class="text-lg mr-1">متر:</label>
+          <input id="mater" name="mater" type="number" min="0"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.meter" (change)="getAllMetersNumber()" />
+          <!-- <span class="text-sm text-red-400">{{ formData.meter }}</span> -->
+        </div>
+        <div class="flex-initial w-28">
+          <label for="olk" class="text-lg mr-1">اولك:</label>
+          <input id="olk" name="olk" type="number" min="0"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.olk" (change)="getAllMetersNumber()" />
+          <!-- <span class="text-sm text-red-400">{{ formData.olk }}</span> -->
+        </div>
+        <div class="flex-initial w-28">
+          <label for="donem" class="text-lg mr-1">دونم:</label>
+          <input id="donem" name="donem" type="number" min="0"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.dunum" (change)="getAllMetersNumber()" />
+          <!-- <span class="text-sm text-red-400">{{ formData.dunum }}</span> -->
+        </div>
+        <div class="flex-2">
+          <label for="area-difference" class="text-lg mr-1">فرق المساحة:</label>
+          <input id="area-difference" name="area-difference" type="number" min="0" disabled=""
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.area_difference" />
+          <!-- <span class="text-sm text-red-400">{{formData.area_difference}}</span> -->
+        </div>
+      </div>
+
+      <!-- السابق - المضاف - سعر متر الارض - سعر متر البناء -->
+      <div class="flex gap-4 text-right direction-rtl flex-row">
+        <div class="basis-1/4">
+          <label for="previous" class="text-lg mr-1">السابقة:</label>
+          <input id="previous" name="previous" type="text"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.previous" />
+          <span class="text-sm text-red-400"></span>
+        </div>
+        <div class="basis-1/4">
+          <label for="sex" class="text-lg mr-1">المضافة:</label>
+          <input id="sex" name="sex" type="text" disabled=""
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.additive" />
+          <span class="text-sm text-red-400"></span>
+        </div>
+        <div class="basis-1/2">
+          <label for="for-his" class="text-lg mr-1">الحقوق المترتبة على العقار:</label>
+          <input id="for-his" name="for-his" type="text"
+            class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="formData.for_his" />
+          <span class="text-sm text-red-400"></span>
+        </div>
+      </div>
+
+      <div class="flex gap-4 text-right direction-rtl flex-row">
+        <div class="flex items-center pr-4 dark:border-gray-700">
+          <input id="type-k-1" type="radio" value="A" name="bordered-radio" [(ngModel)]="formData.type_k"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="type-k-1" class="text-lg mr-1">كشف
+            سكني:</label>
+        </div>
+        <div class="flex items-center pr-4 dark:border-gray-700">
+          <input id="type-k-2" type="radio" value="B" name="bordered-radio" [(ngModel)]="formData.type_k"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="type-k-2" class="text-lg mr-1">كشف
+            زراعي:</label>
+        </div>
+      </div>
+
+      <div *ngIf="formData.type_k == 'A'">
+        <div class="flex gap-4 flex-row text-right direction-rtl mb-6">
+          <div class="basis-1/4">
+            <label for="transaction_type" class="text-lg mr-1">سعر متر الارض:</label>
+            <input id="transaction_type" name="transaction_type" type="number" min="0" (change)="allLandMeterPrice()"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.land_meter_price" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+          <div class="basis-1/8">
+            <label for="distinguish" class="text-lg mr-1">تميز:</label>
+            <input id="distinguish" name="distinguish" type="number" min="0" (change)="allLandMeterPrice()"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.distinguish" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+          <div class="basis-1/4">
+            <label for="building-erea" class="text-lg mr-1">مساحة البناء:</label>
+            <input id="building-erea" name="building-erea" type="number" min="0" (change)="allBuildMeterPrice()"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.building_erea" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+          <div class="basis-1/4">
+            <label for="building-meter-price" class="text-lg mr-1">سعر متر البناء:</label>
+            <input id="building-meter-price" name="building-meter-price" type="number" min="0" (change)="allBuildMeterPrice()"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.building_meter_price" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+          <div class="basis-1/2">
+            <label for="paragraph" class="text-lg mr-1">الفقرة:</label>
+            <input id="paragraph" name="paragraph" type="text"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.paragraph" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+        </div>
+
+        <div class="flex gap-4 flex-row text-right direction-rtl mb-6">
+          <div class="flex-1">
+            <label for="all-land-price" class="text-lg mr-1">سعر قيمة الارض كتابة:</label>
+            <div class="flex">
+              <p
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex w-28 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{formData.all_land_price }}</p>
+              <input id="all-land-price" name="all-land-price" type="text"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.all_land_price_str" />
+            </div>
+          </div>
+          <div class="flex-1">
+            <label for="all-build-price" class="text-lg mr-1">سعر قيمة البناء كتابة:</label>
+            <div class="flex">
+              <p
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex w-28 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{formData.all_build_price}}</p>
+              <input id="all-build-price" name="all-build-price" type="text"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.all_build_price_str" />
+            </div>
+          </div>
+          <div class="flex-1">
+            <label for="public-value" class="text-lg mr-1">القيمة العمومية:</label>
+            <div class="flex">
+              <p
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex w-28 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{formData.all_land_price + formData.all_build_price}}</p>
+              <input id="public-value" name="public-value" type="text"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.all_price_str" />
+            </div>
+          </div>
+        </div>
+
+        <div class="items-center pr-4 dark:border-gray-700 mb-3">
+          <input id="is-has-value-on-dith" type="checkbox" value="" name="is-has-value-on-dith"
+            [(ngModel)]="formData.is_has_value_on_dith"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="is-has-value-on-dith" class="text-lg mr-1">هل يحتوي على قيمة وقت الوفاة:</label>
+        </div>
+        <div *ngIf="formData.is_has_value_on_dith"
+          class="flex gap-4 flex-row text-right direction-rtl  mb-6 items-center">
+          <div class="basis-1/5">
+            <label for="value-on-death" class="text-lg mr-1">النسبة عند الوفاة:</label>
+            <div class="flex">
+
+              <input id="value-on-death" name="value-on-death" type="text" (change)="getPriceOnDeath()"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.perscentage" />
+              <p
+                class="bg-gray-50 border border-gray-300 block text-center test-justify-center text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 w-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                %</p>
+            </div>
+          </div>
+          <div class="flex-1">
+            <label for="value-on-death" class="text-lg mr-1">القيمة وقت الوفاة كتابة:</label>
+            <div class="flex">
+              <p
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex w-28 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{formData.value_on_death}}</p>
+              <input id="value-on-death" name="value-on-death" type="text"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.value_on_death_str" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4 text-right direction-rtl">
+          <div class="flex-1">
+            <label for="note" class="text-lg mr-1">ملاحظات اخرى:</label>
+            <textarea rows="4" id="note" name="note" type="text"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.note"></textarea>
+            <span class="text-sm text-red-400"></span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="formData.type_k == 'B'">
+        <div class="flex gap-4 flex-row text-right direction-rtl mb-6">
+          <div class="basis-1/4">
+            <label for="land-dunum-price" class="text-lg mr-1">سعر دونم الارض:</label>
+            <input id="land-dunum-price" name="land-dunum-price" type="number" min="0" (change)="allLandMeterPrice()"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.land_dunum_price" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+
+          <div class="basis-2/3">
+            <label for="all-land-price" class="text-lg mr-1">سعر قيمة الارض كتابة:</label>
+            <div class="flex">
+              <p
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex w-28 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{formData.all_land_price }}</p>
+              <input id="all-land-price" name="all-land-price" type="text"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.all_land_price_str" />
+            </div>
+          </div>
+          <div class="basis-1/2">
+            <label for="paragraph" class="text-lg mr-1">الفقرة:</label>
+            <input id="paragraph" name="paragraph" type="text"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.paragraph" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+        </div>
+
+        <div class="flex gap-8 flex-rowtext-right direction-rtl">
+          <div class="basis-1/7 items-center pr-4 dark:border-gray-700 mb-6">
+            <input id="is-has-tree" type="checkbox" value="" name="is-has-tree"
+              [(ngModel)]="formData.is_has_tree"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="is-has-tree" class="text-lg mr-1">هل يحتوي على مغروسات</label>
+          </div>
+          <div class="basis-1/7 items-center pr-4 dark:border-gray-700 mb-6">
+            <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox"
+              [(ngModel)]="formData.is_has_building"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="bordered-checkbox-1" class="text-lg mr-1">هل يحتوي بناء</label>
+          </div>
+
+          <div class="items-center pr-4 dark:border-gray-700 mb-3">
+            <input id="is-has-value-on-dith" type="checkbox" value="" name="is-has-value-on-dith"
+              [(ngModel)]="formData.is_has_value_on_dith"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="is-has-value-on-dith" class="text-lg mr-1">هل يحتوي على قيمة وقت الوفاة:</label>
+          </div>
+        </div>
+
+        <div *ngIf="formData.is_has_tree" class="flex gap-4 flex-rowtext-right direction-rtl mb-6">
+          <div class="basis-1/4">
+            <label for="land-dunum-tree-price" class="text-lg mr-1">سعر دونم المغروسات:</label>
+            <input id="land-dunum-tree-price" name="land-dunum-tree-price" type="number" min="0" (change)="allLandDunumTreePrice()"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.land_dunum_tree_price" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+          <div class="flex-1">
+            <label for="all-build-price" class="text-lg mr-1">سعر قيمة المغروسات كتابة:</label>
+            <div class="flex">
+              <p
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex w-28 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{formData.all_land_dunum_tree_price}}</p>
+              <input id="all-build-price" name="all-build-price" type="text"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.all_land_dunum_tree_price_str" />
+            </div>
+          </div>
+        </div>
+
+
+        <div *ngIf="formData.is_has_building" class="flex gap-4 flex-row text-right direction-rtl  mb-6 items-center">
+          <div class="basis-40">
+            <label for="building-erea" class="text-lg mr-1">مساحة البناء:</label>
+            <input id="building-erea" name="building-erea" type="number" min="0" (change)="allBuildMeterPrice()"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.building_erea" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+          <div class="basis-40">
+            <label for="building-meter-price" class="text-lg mr-1">سعر متر البناء:</label>
+            <input id="building-meter-price" name="building-meter-price" type="number" min="0"
+              (change)="allBuildMeterPrice()"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.building_meter_price" />
+            <span class="text-sm text-red-400"></span>
+          </div>
+
+          <div class="flex-1">
+            <label for="all-build-price" class="text-lg mr-1">سعر قيمة البناء كتابة:</label>
+            <div class="flex">
+              <p
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex w-28 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{formData.all_build_price}}</p>
+              <input id="all-build-price" name="all-build-price" type="text"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.all_build_price_str" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4 flex-row flex-row text-right direction-rtl mb-6">
+          <div class="basis-1/2">
+            <label for="public-value" class="text-lg mr-1">القيمة العمومية:</label>
+            <div class="flex">
+              <p
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex w-28 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{formData.all_land_price + formData.all_build_price + formData.all_land_dunum_tree_price}}</p>
+              <input id="public-value" name="public-value" type="text"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.all_price_str" />
+            </div>
+          </div>
+          <div *ngIf="formData.is_has_value_on_dith" class="basis-1/5">
+            <label for="value-on-death" class="text-lg mr-1">النسبة عند الوفاة:</label>
+            <div class="flex">
+              <input id="value-on-death" name="value-on-death" type="text" (change)="getPriceOnDeath()"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.perscentage" />
+              <p
+                class="bg-gray-50 border border-gray-300 block text-center test-justify-center text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 w-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                %</p>
+            </div>
+          </div>
+          <div *ngIf="formData.is_has_value_on_dith"  class="basis-1/2">
+            <label for="value-on-death" class="text-lg mr-1">القيمة وقت الوفاة كتابة:</label>
+            <div class="flex">
+              <p
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 flex w-28 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{formData.value_on_death}}</p>
+              <input id="value-on-death" name="value-on-death" type="text"
+                class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 flex-1 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="formData.value_on_death_str" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4 text-right direction-rtl">
+          <div class="flex-1">
+            <label for="note" class="text-lg mr-1">ملاحظات اخرى:</label>
+            <textarea rows="4" id="note" name="note" type="text"
+              class="bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [(ngModel)]="formData.note"></textarea>
+            <span class="text-sm text-red-400"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-4 flex-rowtext-right direction-rtl">
+        <button type="submit"
+          class='w-full items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-lg text-white tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'>
+          {{('طباعة كشف')}}
+        </button>
+        <button type="button" (click)="prinModel()"
+          class='w-full items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-lg text-white tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'>
+          {{('طباعة نموذج')}}
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<!-- Copyright Section -->
+<div class="bg-gray-900 text-white p-2 text-center">
+  <div class="container mx-auto">
+    <p>دائرة التسجيل العقاري في هيت, برمجة علي حيدر &copy; </p>
+  </div>
+</div>

@@ -1,0 +1,196 @@
+<div class="page">
+  <div class="bg-img">
+    <!-- <img src='assets/images/k2.png' style="opacity: 100;"> -->
+    <p id="p0">{{ formData.hit }}</p>
+    <p id="p1" class="p-same-at">{{ formData.alanbar }}</p>
+    <p id="p2" class="p-same-at">{{ formData.hit }}</p>
+    <p id="p3" class="p-same-at">{{ formData.sub_district }}</p>
+    <p id="p4" class="p-same-at l-space">{{ formData.piece_number| arabicNumber }}</p>
+    <p id="p5">{{ formData.district_name | arabicNumber }}</p>
+    <p id="p6">{{ formData.sex | arabicNumber }}</p>
+    <p id="p7" class="p-same-at">{{ formData.class| arabicNumber }}</p>
+
+    <p id="p8" *ngIf="formData.meter != 0" class="p-same-at l-space">{{ formData.meter | arabicNumber }}</p>
+    <p id="p9" *ngIf="formData.olk != 0" class="p-same-at l-space">{{ formData.olk | arabicNumber }}</p>
+    <p id="p10" *ngIf="formData.dunum != 0" class="p-same-at l-space">{{ formData.dunum | arabicNumber }}</p>
+    <p id="p11" class="p-same-at">{{ formData.area_difference | arabicNumber }}</p>
+    <p id="p12" class="p-same-at"><span class="hid-title-2">.........</span>{{ formData.previous | arabicNumber
+      }}</p>
+    <p id="p13" class="p-same-at"><span class="hid-title-2">...............</span>{{formData.additive | arabicNumber
+      }}</p>
+
+    <p id="p14" class="p-same-at">{{formData.for_his | arabicNumber }}</p>
+
+    <div *ngIf="formData.type_k == 'A'">
+      <!-- قيمة الارض -->
+      <p id="p15" *ngIf="formData.all_land_price != 0" class="p-same-at"><span class="l-space">{{formData.all_land_price
+          | arabicNumber}}</span>&nbsp;{{ formData.all_land_price_str }}</p>
+      <!-- قيمة المشتملات -->
+      <p id="p16" *ngIf="formData.all_build_price != 0" class="p-same-at"><span
+          class="l-space">{{formData.all_build_price
+          | arabicNumber}}</span>&nbsp;{{ formData.all_build_price_str }}</p>
+      <!-- القيمة العمومية -->
+      <p id="p17" *ngIf="formData.all_price != 0" class="p-same-at"><span class="l-space">{{formData.all_price
+          | arabicNumber}}</span>&nbsp;{{ formData.all_price_str }}</p>
+      <!-- القيمة عند الوفات -->
+      <p id="p18" *ngIf="formData.value_on_death != 0" class="p-same-at"><span class="l-space">{{formData.value_on_death
+          | arabicNumber}}</span>&nbsp;{{ formData.value_on_death_str }}</p>
+      <!-- العناوين -->
+      <p id="p16-2" class="p-same-at">قيمة المشتملات</p>
+      <p id="p17-2" class="p-same-at">القيمةالعمومية</p>
+      <p id="p17-22" class="p-same-at">الكلفة وقت التشييد</p>
+
+    </div>
+
+    <div *ngIf="formData.type_k == 'B'">
+      <!-- case 1 -->
+      <div *ngIf="formData.is_has_building == 'false' && formData.is_has_tree == 'false'">
+        <!-- قيمة الارض -->
+        <p id="p15" *ngIf="formData.all_land_price != 0" class="p-same-at"><span
+            class="l-space">{{formData.all_land_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_land_price_str }}</p>
+        <!-- القيمة العمومية -->
+        <p id="p17" *ngIf="formData.all_price != 0" class="p-same-at"><span class="l-space">{{formData.all_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_price_str }}</p>
+        <!-- titles -->
+        <p id="p16-2" class="p-same-at">قيمة المغروسات</p>
+        <p id="p17-2" class="p-same-at">القيمةالعمومية</p>
+        <p id="p17-22" class="p-same-at">الكلفة وقت التشييد</p>
+      </div>
+      <!-- case 2 -->
+      <div *ngIf="formData.is_has_building == 'true' && formData.is_has_tree == 'false'">
+        <!-- قيمة الارض -->
+        <p id="p15" *ngIf="formData.all_land_price != 0" class="p-same-at"><span
+            class="l-space">{{formData.all_land_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_land_price_str }}</p>
+        <!-- قيمة المشتملات -->
+        <p id="p16" class="p-same-at"><span class="l-space">{{formData.all_build_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_build_price_str }}</p>
+        <!-- القيمة العمومية -->
+        <p id="p17" *ngIf="formData.all_price != 0" class="p-same-at"><span class="l-space">{{formData.all_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_price_str }}</p>
+        <!-- titles -->
+        <p id="p16-2" class="p-same-at">قيمة المشتملات</p>
+        <p id="p17-2" class="p-same-at">القيمةالعمومية</p>
+        <p id="p17-22" class="p-same-at">الكلفة وقت التشييد</p>
+      </div>
+      <!-- case 3 -->
+      <div *ngIf="formData.is_has_building == 'false' && formData.is_has_tree == 'true'">
+        <!-- قيمة الارض -->
+        <p id="p15" *ngIf="formData.all_land_price != 0" class="p-same-at"><span
+            class="l-space">{{formData.all_land_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_land_price_str }}</p>
+        <!-- قيمة المغروسات -->
+        <p id="p16" *ngIf="formData.all_land_dunum_tree_price != 0" class="p-same-at"><span
+            class="l-space">{{formData.all_land_dunum_tree_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_land_dunum_tree_price_str }}</p>
+        <!-- القيمة العمومية -->
+        <p id="p17" *ngIf="formData.all_price != 0" class="p-same-at"><span class="l-space">{{formData.all_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_price_str }}</p>
+        <!-- titles -->
+        <p id="p16-2" class="p-same-at">قيمة المغروسات</p>
+        <p id="p17-2" class="p-same-at">القيمةالعمومية</p>
+        <p id="p17-22" class="p-same-at">الكلفة وقت التشييد</p>
+      </div>
+      <!-- case 4 -->
+      <div *ngIf="formData.is_has_building == 'true' && formData.is_has_tree == 'true'">
+        <!-- قيمة الارض -->
+        <p id="p15" *ngIf="formData.all_land_price != 0" class="p-same-at"><span
+            class="l-space">{{formData.all_land_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_land_price_str }}</p>
+        <!-- قيمة المشتملات -->
+        <p id="p16" class="p-same-at"><span class="l-space">{{formData.all_build_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_build_price_str }}</p>
+        <!-- القيمة المغروسات -->
+        <p id="p17" class="p-same-at"><span class="l-space">{{formData.all_land_dunum_tree_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_land_dunum_tree_price_str }}</p>
+        <!-- القيمة العمومية -->
+        <p id="p23" class="p-same-at"><span class="l-space">{{formData.all_price
+            | arabicNumber}}</span>&nbsp;{{ formData.all_price_str }}</p>
+        <!-- titles -->
+        <p id="p16-2" class="p-same-at">قيمة المشتملات</p>
+        <p id="p17-2" class="p-same-at">قيمة المغروسات</p>
+        <p id="p17-22" class="p-same-at">القيمة العمومية</p>
+      </div>
+      <!-- <div *ngIf="formData.is_has_tree == 'false' && formData.is_has_building =='false'">
+        <p id="p16-2" *ngIf="formData.all_land_price == 0" class="p-same-at">قيمة المغروسات</p>
+        <p id="p17-2" *ngIf="formData.all_land_price == 0" class="p-same-at">القيمةالعمومية</p>
+        <p id="p17-22" *ngIf="formData.all_land_price == 0" class="p-same-at">الكلفة وقت التشييد</p>
+      </div>
+      <div>
+        <p id="p16" class="p-same-at">المشتملات{{ formData.all_build_price + '
+          '+formData.all_build_price_str | arabicNumber }}</p>
+        <p id="p16-2" *ngIf="formData.all_land_price == 0" class="p-same-at">قيمة المشتملات</p>
+
+        <p id="p17-2" *ngIf="formData.all_land_price == 0" class="p-same-at">قيمة المغروسات</p>
+        <p id="p17-22" *ngIf="formData.all_land_price == 0" class="p-same-at">القيمةالعمومية</p>
+      </div> -->
+
+      <!-- القيمة عند الوفات -->
+      <p id="p18" *ngIf="formData.value_on_death != 0" class="p-same-at"><span class="l-space">{{formData.value_on_death
+          | arabicNumber}}</span>&nbsp;{{ formData.value_on_death_str }}</p>
+    </div>
+
+    <div *ngIf="formData.type_k == 'A'">
+      <p id="p19" *ngIf="formData.paragraph" class="p-same-at"> الفقرة {{ formData.paragraph | arabicNumber }}</p>
+      <p id="p20" *ngIf="formData.land_meter_price != 0" class="p-same-at">{{ 'سعر متر الارض' }}<span
+          class="hid-title-2">..........................</span><span class="l-space">{{ formData.land_meter_price |
+          arabicNumber }}</span></p>
+      <p id="p21" *ngIf="formData.land_meter_price  != 0" class="p-same-at">{{ 'سعر متر البناء' }}<span
+          class="hid-title-2">...........................</span><span class="l-space">{{ formData.building_meter_price |
+          arabicNumber }}</span></p>
+    </div>
+
+    <div *ngIf="formData.type_k == 'B'">
+      <p id="p19" *ngIf="formData.paragraph" class="p-same-at"> الفقرة {{ formData.paragraph | arabicNumber }}</p>
+      <!-- case 1 -->
+      <div *ngIf="formData.is_has_building == 'false' && formData.is_has_tree == 'false'">
+        <p id="p20" *ngIf="formData.land_dunum_price != 0" class="p-same-at">{{ 'سعر دونم الارض' }}<span
+            class="hid-title-2">.......................</span><span class="l-space">{{ formData.land_dunum_price |
+            arabicNumber }}</span></p>
+      </div>
+      <!-- case 2 -->
+      <div *ngIf="formData.is_has_building == 'true' && formData.is_has_tree == 'false'">
+        <!-- سعر دونم الارض -->
+        <p id="p20" *ngIf="formData.land_dunum_price != 0" class="p-same-at">{{ 'سعر دونم الارض' }}<span
+            class="hid-title-2">.......................</span><span class="l-space">{{ formData.land_dunum_price |
+            arabicNumber }}</span></p>
+        <!-- سعر متر البناء -->
+        <p id="p24" *ngIf="formData.building_meter_price != 0" class="p-same-at">{{ 'سعر متر البناء' }}<span
+            class="hid-title-2">..........................</span><span class="l-space">{{ formData.building_meter_price
+            |
+            arabicNumber }}</span></p>
+      </div>
+      <!-- case 3 -->
+      <div *ngIf="formData.is_has_building == 'false' && formData.is_has_tree == 'true'">
+        <!-- سعر دونم الارض -->
+        <p id="p20" *ngIf="formData.land_dunum_price != 0" class="p-same-at">{{ 'سعر دونم الارض' }}<span
+            class="hid-title-2">.......................</span><span class="l-space">{{ formData.land_dunum_price |
+            arabicNumber }}</span></p>
+        <!-- سعر دونم المغروسات -->
+        <p id="p24" *ngIf="formData.land_dunum_tree_price != 0" class="p-same-at">{{ 'سعر دونم المغروسات' }}<span
+            class="hid-title-2">...............</span><span class="l-space">{{ formData.land_dunum_tree_price |
+            arabicNumber }}</span></p>
+      </div>
+      <!-- case 4 -->
+      <div *ngIf="formData.is_has_building == 'true' && formData.is_has_tree == 'true'">
+        <!-- سعر دونم الارض -->
+        <p id="p20" *ngIf="formData.land_dunum_price != 0" class="p-same-at">{{ 'سعر دونم الارض' }}<span
+            class="hid-title-2">.......................</span><span class="l-space">{{ formData.land_dunum_price |
+            arabicNumber }}</span></p>
+        <!-- سعر متر البناء -->
+        <p id="p24" *ngIf="formData.building_meter_price != 0" class="p-same-at">{{ 'سعر متر البناء' }}<span
+            class="hid-title-2">..........................</span><span class="l-space">{{ formData.building_meter_price
+            |
+            arabicNumber }}</span></p>
+        <!-- سعر دونم المغروسات -->
+        <p id="p25" *ngIf="formData.land_dunum_tree_price != 0" class="p-same-at">{{ 'سعر دونم المغروسات' }}<span
+            class="hid-title-2">...............</span><span class="l-space">{{ formData.land_dunum_tree_price |
+            arabicNumber }}</span></p>
+      </div>
+    </div>
+
+    <p id="p22" *ngIf="formData.note != ''" class="p-same-at"><span class="hid-title-2">....................</span>{{
+      formData.note | arabicNumber
+      }}</p>
+  </div>
